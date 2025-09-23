@@ -1,0 +1,5 @@
+.vcard{ background: var(--color-white); border:1px solid rgba(0,0,0,.06); border-radius: var(--radius-2); padding: var(--space-6); display:grid; gap: var(--space-4); transition: transform .12s ease, box-shadow .2s ease; }
+.vcard:hover{ transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.vcard__icon{ width:44px; height:44px; border-radius: 12px; display:inline-flex; align-items:center; justify-content:center; background: rgba(26,46,80,.06); color: var(--color-primary-dark); }
+.vcard__title{ margin:0; font-size: 18px; font-weight:700; color: var(--color-text); }
+.vcard__text{ margin:0; color: var(--color-muted); font-size: 15px; }

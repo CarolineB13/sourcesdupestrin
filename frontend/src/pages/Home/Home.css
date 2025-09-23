@@ -1,0 +1,166 @@
+/* On utilise styles/variables.css pour les tokens.
+   Aucune collision avec sections/Section.css, ui/Card/*.css. */
+
+.container{
+  width: min(100%, calc(var(--container-w, 1200px) + 2*var(--space-8, 32px)));
+  margin-inline: auto;
+  padding-inline: var(--space-8, 32px);
+}
+
+.Home{
+  color: var(--color-text, #333);
+  background: var(--color-white, #fff);
+}
+
+/* HERO */
+.Home-hero{
+  position: relative;
+  min-height: clamp(420px, 60vh, 640px);
+  display: grid;
+  align-items: end; /* contenu en bas mais pas collé grâce au padding */
+  padding-top: var(--header-h, 72px);
+}
+
+.Home-heroBg{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(1.02);
+}
+.Home-heroInner{
+  position: relative;
+  color: var(--color-white, #fff);
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+  display: flex;
+  justify-content: space-between;
+}
+
+.Home-quote{
+  margin: 0 0 var(--space-6, 24px) 0;
+}
+.Home-quote blockquote{
+  margin: 0;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.35;
+}
+.Home-quote figcaption{
+  margin-top: var(--space-2, 8px);
+  font-size: 14px;
+  opacity: .85;
+}
+
+.Home-surtitle{
+  display: inline-flex; align-items: center; gap: var(--space-3, 12px);
+  font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+  opacity: .95;
+}
+.Home-logo{ width: 20px; height: 20px; }
+.Home-title{
+  margin: var(--space-4, 16px) 0 var(--space-3, 12px);
+  font-family: "Pestrin", "Lora", Georgia, serif;
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.1;
+}
+.Home-tagline{ max-width: 46ch; font-size: 18px; opacity:.95; }
+.Home-ctas{ margin-top: var(--space-6, 24px); display:flex; gap:var(--space-4, 16px); flex-wrap:wrap; }
+
+/* Petits boutons (compat si tu as déjà ui/Button côté cartes) */
+.Btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap: var(--space-2, 8px);
+  height:44px; padding:0 var(--space-6, 24px);
+  border-radius: var(--radius-2, 10px);
+  font-weight:600; text-decoration:none;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+  border:1px solid transparent;
+}
+.Btn--primary{
+  background: var(--color-primary, #4DA6FF);
+  color:#fff; box-shadow:0 4px 14px rgba(26,46,80,.25);
+}
+.Btn--primary:hover{ transform: translateY(-1px); }
+.Btn--ghost{
+  background: transparent;
+  color: var(--color-primary-dark, #1A2E50);
+  border-color: var(--color-primary-dark, #1A2E50);
+}
+.Btn--ghost:hover{ background: color-mix(in srgb, var(--color-primary, #4DA6FF) 8%, transparent); }
+
+/* Sous-blocs (compatibles avec Section) */
+.HeaderRow{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-6, 24px);
+}
+.LinkArrow{ color: var(--color-primary-dark, #1A2E50); text-decoration:none; text-underline-offset:3px; }
+.LinkArrow:hover{ text-decoration: underline; }
+.Link{ color: var(--color-primary-dark, #1A2E50); }
+
+/* Grids / media */
+.GridTwo{
+  display:grid; grid-template-columns: 1.2fr .8fr;
+  gap: clamp(var(--space-6, 24px), 5vw, var(--space-10, 40px));
+}
+@media (max-width: 900px){ .GridTwo{ grid-template-columns: 1fr; } }
+
+.MediaCard{
+  border-radius: var(--radius-2, 10px);
+  overflow:hidden; background:#fff;
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 8px 24px rgba(26,46,80,.08);
+}
+.MediaCard img{ display:block; width:100%; height:400px; object-fit: cover; }
+
+/* Grilles pour intégrer tes ProductCard / ValueCard existants */
+.Cards{
+  display:grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6, 24px);
+}
+@media (max-width: 1000px){ .Cards{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px){ .Cards{ grid-template-columns: 1fr; } }
+
+.Values{
+  display:grid; grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6, 24px);
+}
+@media (max-width: 1000px){ .Values{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px){ .Values{ grid-template-columns: 1fr; } }
+
+/* Bandeau bas */
+.Band{ background: var(--color-primary-dark, #1A2E50); color:#fff; padding-block: var(--space-6, 24px); }
+.Band-text{ margin:0; text-align:center; }
+
+/* ===========================
+   Mobile / Tablettes (<1000px)
+   =========================== */
+@media (max-width: 1000px){
+  /* le héros n'aligne plus en bas, mais au centre, et on ajoute un peu d'air en bas */
+  .Home-hero{
+ 
+    padding-bottom: var(--space-6, 24px);
+  }
+
+  /* stack propre + espaces resserrés entre la quote et les CTAs */
+  .Home-heroInner{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4, 16px);
+  }
+
+  /* réduit l’espace sous la citation */
+  .Home-quote{
+    margin: 0 0 var(--space-3, 12px);
+  }
+
+  /* remonte le groupe de boutons */
+  .Home-ctas{
+    margin-top: var(--space-3, 12px); /* tu peux descendre à var(--space-2, 8px) si besoin */
+  }
+
+  /* typo un peu plus compacte pour petits écrans */
+  .Home-quote blockquote{
+    font-size: clamp(17px, 2vw, 21px);
+    line-height: 1.3;
+  }
+}

@@ -1,0 +1,30 @@
+/* Polices Google (Inter + Lora) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap');
+
+/* Reset léger */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* Titres selon la charte */
+h1 { font-family: 'Pestrin', serif; line-height: 1.1; margin: 0 0 var(--space-6); }
+h2, h3, h4, blockquote { font-family: 'Lora', Georgia, serif; line-height: 1.2; margin: 0 0 var(--space-4); }
+
+/* Liens & focus */
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 3px solid rgba(77,166,255,.35); outline-offset: 2px; }
+
+/* Layout utilitaires */
+.container { max-width: var(--container-w); margin: 0 auto; padding: 0 var(--space-6); }
+.section { padding: var(--space-10) 0; }
+
+/* Accessibilité */
+.visually-hidden {
+  position: absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}

@@ -1,0 +1,62 @@
+.ValeursPage{
+  color: var(--color-text, #333);
+  background: var(--color-white, #fff);
+}
+
+.Valeurs-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6, 24px);
+}
+
+.ValCard{ display: grid; gap: var(--space-4, 16px); }
+
+.ValCard-head{
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: var(--space-3, 12px);
+  align-items: start;
+}
+
+.ValIcon{
+  display: inline-flex;
+  width: 40px; height: 40px;
+  border-radius: var(--radius-2, 10px);
+  align-items: center; justify-content: center;
+  border: 1px solid rgba(0,0,0,.07);
+  background: color-mix(in srgb, var(--color-primary, #4DA6FF) 10%, #fff);
+}
+
+.ValLead{ margin: 0; font-size: 16px; line-height: 1.45; }
+
+.Checklist{
+  margin: 0; padding-left: 0; list-style: none;
+  display: grid; gap: var(--space-2, 8px);
+}
+.Checklist li{ position: relative; padding-left: 26px; }
+.Checklist li::before{
+  content: ""; position: absolute; left: 0; top: .4em;
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid var(--color-primary, #4DA6FF);
+  box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--color-primary, #4DA6FF) 20%, transparent);
+}
+
+.Kpis{ display: flex; flex-wrap: wrap; gap: var(--space-2, 8px); }
+.Kpi{
+  display: inline-flex; align-items: center; height: 28px; padding: 0 10px;
+  border-radius: 999px; font-size: 13px; font-weight: 600;
+  background: color-mix(in srgb, var(--color-primary, #4DA6FF) 12%, #fff);
+  border: 1px solid color-mix(in srgb, var(--color-primary, #4DA6FF) 30%, #fff);
+}
+
+/* CTA bas de page */
+.ValCTA{
+  background: var(--color-primary-dark, #1A2E50);
+  color: #fff;
+  padding: var(--space-8, 32px) 0;
+  margin-top: var(--space-10, 40px);
+}
+.ValCTA-inner{ display: grid; gap: var(--space-4, 16px); align-items: center; }
+@media (min-width: 800px){ .ValCTA-inner{ grid-template-columns: 1fr auto; } }
+.ValCTA-text{ margin: 0; font-size: 18px; opacity: .95; }
+.ValCTA-actions{ display: flex; gap: var(--space-3, 12px); flex-wrap: wrap; }

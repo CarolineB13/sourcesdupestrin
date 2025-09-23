@@ -1,0 +1,8 @@
+/* src/pages/Collection/Collection.css */
+.collection__grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+.collection__status{ color: var(--color-muted); }
+.collection__error{ color: var(--color-danger); font-weight: 600; }

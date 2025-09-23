@@ -1,0 +1,6 @@
+.section{ padding: var(--space-10) 0; }
+.section--alt{ background: var(--color-bg); }
+.section__head{ margin-bottom: var(--space-8); display:grid; gap: var(--space-3); }
+.section__kicker{ font-size: 14px; font-weight:700; letter-spacing:.2px; color: var(--color-primary-dark); text-transform: uppercase; }
+.section__title{ margin:0; font-size: 32px; font-family: 'Lora', Georgia, serif; }
+.section__intro{ margin:0; color: var(--color-muted); max-width: 70ch; }
