@@ -33,7 +33,7 @@ jobs:
         working-directory: frontend
 
       - name: Build
-        run: npx run build
+        run: npm run build
         working-directory: frontend
 
       - name: Upload artifact
