@@ -1,0 +1,31 @@
+﻿[
+  {
+    "id": "ventadour-1l-plate",
+    "status": "available",
+    "title": "Ventadour 1L",
+    "type": "Plate",
+    "volume": "1 L",
+    "packaging": "Verre consigné · casier x12",
+    "image": "assets/bouteille_plate.jpg",
+    "shopUrl": "https://boutique.sourcesdupestrin.fr"
+  },
+  {
+    "id": "ventadour-1l-gazeuse",
+    "status": "available",
+    "title": "Ventadour 1L",
+    "type": "Gazeuse",
+    "volume": "1 L",
+    "packaging": "Verre consigné · casier x12",
+    "image": "assets/bouteille_gaz.jpg",
+    "shopUrl": "https://boutique.sourcesdupestrin.fr"
+  },
+  {
+    "id": "ventadour-0_5l",
+    "status": "soon",
+    "title": "Ventadour",
+    "type": "Plate",
+    "volume": "0,5 L / 33 cl",
+    "packaging": "Bientôt disponibles",
+    "image": ""
+  }
+]
