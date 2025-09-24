@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import './Contact.css'
-import { Car, Footprints, Train } from "lucide-react";
+import { Car } from "lucide-react";
 // ————————————————————————
 // Petits composants réutilisables
 // ————————————————————————
@@ -49,11 +49,7 @@ export function HoursTable(){
 export function MapEmbed(){
   const lat = 44.6821278;
   const lng = 4.2818839;
-
-  const base = "https://www.google.com/maps/dir/?api=1";
-  const driving  = `${base}&destination=${lat},${lng}&travelmode=driving`;
-  const walking  = `${base}&destination=${lat},${lng}&travelmode=walking`;
-  const transit  = `${base}&destination=${lat},${lng}&travelmode=transit`;
+  const driving = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
 
   return (
     <section className="Contact-section" aria-labelledby="map-title">
@@ -75,7 +71,7 @@ export function MapEmbed(){
         <div className="MapActions">
           <a className="Btn Btn--primary MapBtn" href={driving} target="_blank" rel="noreferrer">
             <Car size={18} aria-hidden="true" />
-            <span>Itinéraire</span>
+            <span>Itinéraire </span>
           </a>
         </div>
       </div>
