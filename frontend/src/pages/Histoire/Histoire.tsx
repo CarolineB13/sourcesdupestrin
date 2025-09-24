@@ -42,12 +42,17 @@ function TimelineItem({
 export default function Histoire() {
   return (
     <main className="Histoire">
-      {/* INTRO */}
-      <Section
-        kicker="Notre histoire"
-        title="Héritage minéral depuis 1868"
-        intro="Au cœur des paysages volcaniques de l’Ardèche, la source du Pestrin est connue depuis l’Antiquité et officiellement exploitée dès 1868. Sa pureté et sa pétillance naturelle ont façonné une tradition locale que nous perpétuons aujourd’hui avec Ventadour."
-      >
+      {/* H1 de page */}
+      <header className="container" aria-labelledby="histoire-h1">
+        <p className="Contact-kicker" style={{margin:0}}>Notre histoire</p>
+        <h1 id="histoire-h1">Héritage minéral depuis 1868</h1>
+        <p className="lead" style={{marginBottom: "var(--space-6, 24px)"}}>
+          Au cœur des paysages volcaniques de l’Ardèche, la source du Pestrin est connue depuis l’Antiquité et officiellement exploitée dès 1868. Sa pureté et sa pétillance naturelle ont façonné une tradition locale que nous perpétuons aujourd’hui avec Ventadour.
+        </p>
+      </header>
+
+      {/* INTRO visuelle (ex-Section kicker/title/intro remplacé par simple bloc) */}
+      <Section>
         <div className="container Histo-heroGrid">
           <figure className="Histo-heroMedia">
             <img src={usine1} alt="Ancienne façade du Pestrin — hôtel, restaurant et usine" loading="eager" />
@@ -86,7 +91,7 @@ export default function Histoire() {
         </ol>
       </Section>
 
-      {/* AUX ORIGINES + SCHÉMA AGRANDI */}
+      {/* AUX ORIGINES + SCHÉMA large */}
       <Section title="Aux origines & la signature Ventadour">
         <div className="container Histo-origins">
           <div className="Histo-originsText">
@@ -131,7 +136,7 @@ export default function Histoire() {
         </div>
       </Section>
 
-      {/* LES SOURCES DU PESTRIN */}
+      {/* LES SOURCES */}
       <Section title="Les sources du Pestrin">
         <div className="container Histo-sourcesWrap">
           <div className="Histo-sourcesMain">

@@ -7,11 +7,19 @@ import "./Valeurs.css";
 export default function Valeurs(){
   return (
     <main className="ValeursPage">
-      <Section
-        kicker="Nos engagements"
-        title="Nos valeurs"
-        intro="Au Pestrin, nos choix défendent la sobriété, la santé, la préservation du site et l’ancrage ardéchois."
-      >
+      {/* En-tête de page : H1 unique */}
+      <header className="container" aria-labelledby="valeurs-h1">
+        <p style={{ margin: 0, letterSpacing: ".06em", textTransform: "uppercase", opacity: .8 }}>
+          Nos engagements
+        </p>
+        <h1 id="valeurs-h1">Nos valeurs</h1>
+        <p style={{ maxWidth: "70ch" }}>
+          Au Pestrin, nos choix défendent la sobriété, la santé, la préservation du site et l’ancrage ardéchois.
+        </p>
+      </header>
+
+      {/* Section de contenu (H2 via Section.title) */}
+      <Section title="Nos engagements">
         <div className="container">
           <div className="Valeurs-grid">
 
@@ -39,29 +47,27 @@ export default function Valeurs(){
 
             {/* 2. Santé & authenticité */}
             <ValueCard title="Santé & authenticité">
-  <div className="ValCard">
-    <div className="ValCard-head">
-      <span className="ValIcon" aria-hidden="true"><HeartPulse size={24} /></span>
-      <p className="ValLead">
-        Une eau <strong>faiblement minéralisée</strong>, issue d’une source naturellement gazeuse.
-        En bouteille&nbsp;: version plate (dégazéifiée) ou version à <strong>pétillance fine</strong>
-        avec <strong>ajout de CO₂</strong> après dégazéification, conformément à la réglementation.
-      </p>
-    </div>
-
-    <ul className="Checklist">
-      <li>Hydratation quotidienne, <strong>goût équilibré</strong>, sans artifice.</li>
-      <li>Contrôles qualité internes + conformité <strong>HACCP</strong>.</li>
-      <li>Traçabilité & transparence sur l’origine et le process.</li>
-    </ul>
-
-    <div className="Kpis">
-      <span className="Kpi">Faible minéralisation</span>
-      <span className="Kpi">Pétillance fine</span>
-      <span className="Kpi">HACCP</span>
-    </div>
-  </div>
-</ValueCard>
+              <div className="ValCard">
+                <div className="ValCard-head">
+                  <span className="ValIcon" aria-hidden="true"><HeartPulse size={24} /></span>
+                  <p className="ValLead">
+                    Une eau <strong>faiblement minéralisée</strong>, issue d’une source naturellement gazeuse.
+                    En bouteille&nbsp;: version plate (dégazéifiée) ou version à <strong>pétillance fine</strong>
+                    avec <strong>ajout de CO₂</strong> après dégazéification, conformément à la réglementation.
+                  </p>
+                </div>
+                <ul className="Checklist">
+                  <li>Hydratation quotidienne, <strong>goût équilibré</strong>, sans artifice.</li>
+                  <li>Contrôles qualité internes + conformité <strong>HACCP</strong>.</li>
+                  <li>Traçabilité & transparence sur l’origine et le process.</li>
+                </ul>
+                <div className="Kpis">
+                  <span className="Kpi">Faible minéralisation</span>
+                  <span className="Kpi">Pétillance fine</span>
+                  <span className="Kpi">HACCP</span>
+                </div>
+              </div>
+            </ValueCard>
 
             {/* 3. Préservation du site */}
             <ValueCard title="Préservation du site & patrimoine">
@@ -111,7 +117,7 @@ export default function Valeurs(){
         </div>
       </Section>
 
-      {/* Bandeau de liaison (vers la future page consigne) */}
+      {/* Bandeau de liaison (vers la page consigne) */}
       <section className="ValCTA" aria-label="En savoir plus">
         <div className="container ValCTA-inner">
           <p className="ValCTA-text">Envie de comprendre notre boucle de consigne et la FAQ&nbsp;?</p>

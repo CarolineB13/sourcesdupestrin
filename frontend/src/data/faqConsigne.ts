@@ -7,7 +7,7 @@ export const faqConsigne: QA[] = [
   },
   {
     q: "Où rapporter mes bouteilles ?",
-    a: "Vous pouvez rapporter vos bouteilles vides soit à l’usine, soit directement là où vous les avez achetées, ou encore dans nos points partenaires (restaurants, épiceries, jardineries…)."
+    a: "À l’usine, chez le commerçant où vous les avez achetées, ou dans nos points partenaires (restaurants, épiceries, jardineries…)."
   },
   {
     q: "Dois-je préparer mes bouteilles avant de les rapporter ?",

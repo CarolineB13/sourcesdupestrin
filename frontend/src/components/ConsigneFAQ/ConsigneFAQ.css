@@ -1,0 +1,6 @@
+.FAQ{ background:#fff; padding: var(--space-10,40px) 0; }
+.FAQ-title{ margin:0 0 var(--space-6,24px) 0; color: var(--color-primary-dark,#1A2E50); font-size: clamp(20px, 2.4vw, 28px); }
+.FAQ-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: var(--space-4,16px); }
+.FAQ-item{ border:1px solid rgba(0,0,0,.08); border-radius: var(--radius-1,6px); padding: var(--space-3,12px) var(--space-4,16px); background:#fff; }
+.FAQ-q{ cursor:pointer; font-weight:600; color: var(--color-text,#333); }
+.FAQ-a{ margin-top: var(--space-2,8px); color: var(--color-muted,#5A6770); }

@@ -1,0 +1,52 @@
+.ConsignePage{
+  color: var(--color-text, #333);
+  background: var(--color-white, #fff);
+}
+
+/* Petit hero sobre */
+.ConsigneHero{
+  padding: var(--space-10, 40px) 0 var(--space-6, 24px);
+  background: var(--color-bg, #F9F9F9);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.ConsigneHero-inner{ display:grid; gap: var(--space-2, 8px); }
+.ConsigneHero-title{
+  margin:0; font-size: clamp(22px, 3vw, 32px); color: var(--color-primary-dark, #1A2E50);
+}
+.ConsigneHero-sub{ margin:0; color: var(--color-muted, #5A6770); }
+
+/* CTA bas de page */
+.ConsigneCTA{
+  background: var(--color-primary-dark, #1A2E50);
+  color: #fff;
+  padding: var(--space-10, 40px) 0;
+  margin-top: var(--space-10, 40px);
+}
+.ConsigneCTA-inner{
+  display: grid;
+  gap: var(--space-6, 24px);
+}
+@media (min-width: 900px){
+  .ConsigneCTA-inner{
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.ConsigneCTA-block h2{ margin: 0 0 var(--space-2, 8px); font-size: clamp(18px, 2.2vw, 22px); }
+.ConsigneCTA-block p{ margin: 0 0 var(--space-4, 16px); opacity: .95; }
+
+/* Bouton générique (reprise des styles globaux si déjà présents) */
+.Btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap: var(--space-2, 8px);
+  height:44px; padding:0 var(--space-6, 24px);
+  border-radius: var(--radius-2, 10px);
+  font-weight:600; text-decoration:none;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+  border:1px solid transparent;
+}
+.Btn--primary{
+  background: var(--color-primary, #4DA6FF);
+  color:#fff; box-shadow:0 4px 14px rgba(26,46,80,.25);
+}
+.Btn--primary:hover{ transform: translateY(-1px); }

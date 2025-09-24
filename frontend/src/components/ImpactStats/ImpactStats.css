@@ -1,0 +1,9 @@
+.Impact{ background: var(--color-bg,#F9F9F9); padding: var(--space-10,40px) 0; }
+.Impact-head{ display:grid; gap: var(--space-2,8px); margin-bottom: var(--space-6,24px); }
+.Impact-title{ margin:0; font-size: clamp(20px, 2.4vw, 28px); color: var(--color-primary-dark,#1A2E50); }
+.Impact-sub{ margin:0; color: var(--color-muted,#5A6770); }
+.Impact-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6,24px); }
+.Impact-card{ background:#fff; border:1px solid rgba(0,0,0,.06); border-radius: var(--radius-2,10px); padding: var(--space-6,24px); text-align:center; box-shadow:0 4px 16px rgba(26,46,80,.06); }
+.Impact-value{ font-size: clamp(24px, 4vw, 36px); font-weight: 700; color: var(--color-primary,#4DA6FF); line-height:1; }
+.Impact-suffix{ margin-left: 4px; font-size: .75em; color: var(--color-muted); }
+.Impact-label{ margin-top: var(--space-2,8px); color: var(--color-text,#333); }

@@ -1,23 +1,37 @@
-/* Polices Google (Inter + Lora) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap');
+/* Polices Google (Inter + Lora + Bodoni Moda pour H1) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&family=Bodoni+Moda:wght@500;600;700&display=swap');
 
 /* Reset léger */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
+
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Titres selon la charte */
-h1 { font-family: 'Pestrin', serif; line-height: 1.1; margin: 0 0 var(--space-6); }
-h2, h3, h4, blockquote { font-family: 'Lora', Georgia, serif; line-height: 1.2; margin: 0 0 var(--space-4); }
+h1 {
+  font-family: var(--font-display);      /* remplace 'Pestrin' */
+  font-weight: 600;                      /* ajuste 500–700 selon rendu */
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  font-feature-settings: "liga","clig","kern","onum";
+  margin: 0 0 var(--space-6);
+}
+h2, h3, h4, blockquote {
+  font-family: var(--font-serif, "Lora", Georgia, serif);
+  line-height: 1.2;
+  margin: 0 0 var(--space-4);
+}
 
 /* Liens & focus */
 a { color: inherit; text-decoration: none; }
-:focus-visible { outline: 3px solid rgba(77,166,255,.35); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
 
 /* Layout utilitaires */
 .container { max-width: var(--container-w); margin: 0 auto; padding: 0 var(--space-6); }

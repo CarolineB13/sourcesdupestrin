@@ -6,7 +6,6 @@ import basaltImg from "../../assets/grotte_3.jpg";
 import bouteillePlate from "../../assets/bouteille_plate.jpg";
 import bouteilleGazeuse from "../../assets/bouteille_gaz.jpg";
 
-
 import Section from "../../sections/Section";
 import ProductCard from "../../ui/Card/ProductCard";
 import ValueCard from "../../ui/Card/ValueCard";
@@ -18,14 +17,18 @@ export default function Home(){
     <main className="Home">
 
       {/* HERO */}
-       <section className="Home-hero" aria-label="Paysage ardéchois">
+      <section className="Home-hero" aria-label="Paysage ardéchois">
         <img className="Home-heroBg" src={heroImg} alt="" aria-hidden="true" loading="eager" />
         <div className="container Home-heroInner">
-          <figure className="Home-quote">
-            <blockquote>
-              <p>«Là où le temps façonne la roche, naît une eau digne d’héritage.»</p>
-            </blockquote>
-          </figure>
+          <div>
+            {/* H1 de page (unique) */}
+            <h1>Ventadour — Eau Minérale Des Monts D’Ardèche</h1>
+            <figure className="Home-quote">
+              <blockquote>
+                <p>«Là où le temps façonne la roche, naît une eau digne d’héritage.»</p>
+              </blockquote>
+            </figure>
+          </div>
           <div className="Home-ctas">
             <Link className="Btn Btn--primary" to="/histoire">Découvrir Ventadour</Link>
             {SHOP_ENABLED && (
@@ -38,26 +41,25 @@ export default function Home(){
       </section>
 
       {/* ORIGINE VOLCANIQUE */}
-<Section
-  id="origine"
-  variant="alt"
-  title="Une source née du volcan"
->
-  <div className="GridTwo GridTwo--center">
-    <div>
-      <p className="lead">
-        Enfouie dans les profondeurs du massif ardéchois, la source Ventadour jaillit naturellement gazeuse.
-        Son pétillant provient d’un phénomène rare : le gaz carbonique d’origine volcanique infuse l’eau
-        à travers les couches basaltiques, lui donnant une minéralité équilibrée et un goût unique.
-      </p>
-      <Link to="/histoire" className="LinkArrow">Explorer notre source →</Link>
-    </div>
-    <div className="MediaCard">
-      <img src={basaltImg} alt="Paysage ardéchois aux reliefs volcaniques" loading="lazy" />
-    </div>
-  </div>
-</Section>
-
+      <Section
+        id="origine"
+        variant="alt"
+        title="Une source née du volcan"
+      >
+        <div className="GridTwo GridTwo--center">
+          <div>
+            <p className="lead">
+              Enfouie dans les profondeurs du massif ardéchois, la source Ventadour jaillit naturellement gazeuse.
+              Son pétillant provient d’un phénomène rare : le gaz carbonique d’origine volcanique infuse l’eau
+              à travers les couches basaltiques, lui donnant une minéralité équilibrée et un goût unique.
+            </p>
+            <Link to="/histoire" className="LinkArrow">Explorer notre source →</Link>
+          </div>
+          <div className="MediaCard">
+            <img src={basaltImg} alt="Paysage ardéchois aux reliefs volcaniques" loading="lazy" />
+          </div>
+        </div>
+      </Section>
 
       {/* COLLECTION */}
       <Section

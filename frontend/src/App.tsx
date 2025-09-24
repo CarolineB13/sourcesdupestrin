@@ -5,6 +5,7 @@ import Histoire from "./pages/Histoire/Histoire";
 import Valeurs from "./pages/Valeurs/Valeurs";
 import Collection from "./pages/Collection/Collection";
 import Contact from "./pages/Contact/Contact";
+import Consigne from "./pages/Consigne/Consigne";
 import PlaygroundButtons from "./pages/Playground/PlaygroundButtons";
 import PlaygroundInputs from "./pages/Playground/PlaygroundInputs";
 import PlaygroundCards from "./pages/Playground/PlaygroundCards";
@@ -26,6 +27,7 @@ export default function App(){
         <Route path="/valeurs" element={<Valeurs/>}/>
         <Route path="/collection" element={<Collection/>}/>
         <Route path="/contact" element={<Contact/>}/>
+        <Route path="/consigne" element={<Consigne/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

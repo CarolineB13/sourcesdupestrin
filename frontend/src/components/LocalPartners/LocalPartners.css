@@ -1,0 +1,8 @@
+.Partners{ background: var(--color-bg,#F9F9F9); padding: var(--space-10,40px) 0; }
+.Partners-head{ margin-bottom: var(--space-6,24px); }
+.Partners-title{ margin:0; color: var(--color-primary-dark,#1A2E50); font-size: clamp(20px, 2.4vw, 28px); }
+.Partners-sub{ margin:0; color: var(--color-muted,#5A6770); }
+.Partners-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: var(--space-4,16px); }
+.Partners-card{ background:#fff; border:1px solid rgba(0,0,0,.06); border-radius: var(--radius-1,6px); padding: var(--space-4,16px); }
+.Partners-name{ color: var(--color-text,#333); }
+.Partners-meta{ margin-top: 4px; color: var(--color-muted,#5A6770); font-size: 14px; }
