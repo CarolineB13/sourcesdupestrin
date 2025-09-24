@@ -1,11 +1,12 @@
 // src/components/Header/Header.tsx
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Button } from '../../ui/Button'; 
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Button } from '../../ui/Button';
 import logoUrl from '../../assets/logo-pestrin.svg';
 import './Header.css';
 
 const SHOP_ENABLED = String(import.meta.env.VITE_SHOP_ENABLED) === 'true';
+const SHOP_URL = String(import.meta.env.VITE_SHOP_URL || 'https://boutique.sourcesdupestrin.fr');
 
 function LangSwitcher(){
   const loc = useLocation();
@@ -17,7 +18,7 @@ function LangSwitcher(){
     if (lang === 'en' && !pathname.startsWith('/en')) {
       nav('/en' + pathname + search + hash);
     } else if (lang === 'fr' && pathname.startsWith('/en')) {
-      nav(pathname.replace(/^\/en/, '') + search + hash || '/');
+      nav((pathname.replace(/^\/en/, '') || '/') + search + hash);
     }
   };
 
@@ -50,10 +51,11 @@ export default function Header(){
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`}>
       <div className="container header__inner">
-        <a className="header__brand" href="/">
+        {/* Brand → Link (SPA-friendly + basename) */}
+        <Link className="header__brand" to="/" aria-label="Aller à l’accueil">
           <img className="header__logo" src={logoUrl} alt="Les Sources du Pestrin" />
           <span className="header__title">Les Sources du Pestrin</span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="nav" aria-label="Navigation principale">
@@ -66,13 +68,20 @@ export default function Header(){
           </ul>
           <LangSwitcher />
           {SHOP_ENABLED && (
-            <Button as="a" href="https://boutique.sourcesdupestrin.fr" target="_blank" rel="noopener" size="sm">Boutique</Button>
+            <Button as="a" href={SHOP_URL} target="_blank" rel="noopener" size="sm">Boutique</Button>
           )}
         </nav>
 
         {/* Burger */}
-        <button className="burger" aria-label="Ouvrir le menu" aria-controls="menuMobile" aria-expanded={open ? 'true' : 'false'} onClick={() => setOpen(true)}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <button
+          className="burger"
+          aria-label="Ouvrir le menu"
+          aria-controls="menuMobile"
+          aria-expanded={open ? 'true' : 'false'}
+          onClick={() => setOpen(true)}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M3 6h18M3 12h18M3 18h18"/>
           </svg>
         </button>
@@ -82,13 +91,19 @@ export default function Header(){
       <div className="drawer" id="menuMobile" aria-hidden={open ? 'false' : 'true'} onClick={close}>
         <div className="drawer__panel" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
           <div className="drawer__top">
-            <a className="header__brand" href="/" onClick={close}>
-              <img className="header__logo" src={logoUrl} alt="Les Sources du Pestrin"
-                   onError={(e) => { (e.currentTarget as HTMLImageElement).style.display='none'; }} />
+            {/* Brand mobile → Link + close */}
+            <Link className="header__brand" to="/" onClick={close} aria-label="Aller à l’accueil">
+              <img
+                className="header__logo"
+                src={logoUrl}
+                alt="Les Sources du Pestrin"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display='none'; }}
+              />
               <span className="header__title">Les Sources du Pestrin</span>
-            </a>
+            </Link>
             <button className="burger" aria-label="Fermer le menu" onClick={close}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M6 6l12 12M18 6l-12 12"/>
               </svg>
             </button>
@@ -105,7 +120,7 @@ export default function Header(){
           <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:'auto', gap:'12px'}}>
             <LangSwitcher />
             {SHOP_ENABLED && (
-              <Button as="a" href="https://boutique.sourcesdupestrin.fr" target="_blank" rel="noopener" size="sm">Boutique</Button>
+              <Button as="a" href={SHOP_URL} target="_blank" rel="noopener" size="sm">Boutique</Button>
             )}
           </div>
         </div>
