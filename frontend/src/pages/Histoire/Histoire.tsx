@@ -188,7 +188,7 @@ export default function Histoire() {
               <div className="Histo-asideTitle">Le saviez-vous&nbsp;?</div>
               <p className="Histo-asideText">
                 La source appelée <strong>Julie</strong> n’est pas à ciel ouvert&nbsp;: on y accède par une cavité
-                taillée dans la roche, souvent surnommée «&nbsp;la grotte&nbsp;». Un lieu qui mêle mémoire
+                taillée dans la roche. On la surnomme «&nbsp;la grotte&nbsp;». Un lieu qui mêle mémoire
                 industrielle et curiosité géologique.
               </p>
               <figure className="Histo-asidePic">

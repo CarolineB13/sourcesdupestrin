@@ -148,3 +148,17 @@
 
 /* Texte mis en avant */
 .lead{ font-size:clamp(18px,2.1vw,20px); line-height:1.5; }
+/* Ventadour — faire prendre la largeur du conteneur à la vignette */
+.Histo-pic--single .Histo-thumb--ventadour{
+  display:block;
+  width: 100%;                 /* << prend toute la ligne */
+  max-width: 680px;            /* limite raisonnable en desktop */
+  margin-inline: auto;         /* centre si plus petit que le conteneur */
+  border-radius: var(--radius-2,10px);
+  overflow: hidden;
+}
+.Histo-pic--single .Histo-thumb--ventadour img{
+  width: 100%;                 /* s’étire avec le bouton */
+  height: clamp(180px, 26vh, 300px);
+  object-fit: cover;
+}

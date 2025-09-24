@@ -1,8 +1,20 @@
 /* src/pages/Collection/Collection.css */
 .collection__grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6, 24px);              /* fallback inclus */
+  align-items: stretch;                    /* étire les items en hauteur */
 }
-.collection__status{ color: var(--color-muted); }
-.collection__error{ color: var(--color-danger); font-weight: 600; }
+
+@media (max-width: 1000px){
+  .collection__grid{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px){
+  .collection__grid{ grid-template-columns: 1fr; }
+}
+
+.collection__status{ color: var(--color-muted, #5A6770); }
+.collection__error{ color: var(--color-danger, #B00020); font-weight: 600; }
+
+/* au cas où : force les cartes à occuper toute la hauteur de la cellule */
+.collection__grid > * { height: 100%; }
