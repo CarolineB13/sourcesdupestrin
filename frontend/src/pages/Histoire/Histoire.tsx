@@ -83,7 +83,7 @@ export default function Histoire() {
             Suspension de l’autorisation d’exploitation : l’activité s’interrompt. Une période nécessaire
             pour repenser l’avenir de manière exigeante et responsable.
           </TimelineItem>
-          <TimelineItem year="2024" title="Renaissance de Ventadour">
+          <TimelineItem year="2025" title="Renaissance de Ventadour">
             Remise aux normes du site par la Compagnie des Eaux d’Ardèche. Ventadour revient avec une
             vision claire&nbsp;: excellence environnementale, innovation responsable et ancrage territorial
             (territoire inscrit au Geopark UNESCO).
@@ -159,12 +159,7 @@ export default function Histoire() {
                 qui a nourri bien des récits sur le site.
               </li>
               <li>
-                <strong>Saint-Charles</strong> — Une source historique du vallon, mentionnée aux côtés de Ventadour
-                et Chantemerle dans la tradition locale.
-              </li>
-              <li>
-                <strong>Saint-Henri & Saint-Michel</strong> — Des points d’eau situés rive droite de la
-                Fontaulière, témoins de la richesse souterraine du vallon.
+                <strong>Saint-Henri, Saint-Michel & Saint-Charles</strong> — Trois émergences situées en rive droite de la Fontaulière, témoins de la richesse souterraine du vallon.
               </li>
               <li>
                 <strong>Source du Bois</strong> — Une émergence discrète nichée derrière les bâtiments.

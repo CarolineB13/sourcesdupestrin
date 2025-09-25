@@ -1,10 +1,36 @@
 import React from "react";
-import './Contact.css'
+import "./Contact.css";
 import { Car } from "lucide-react";
+
+// ————————————————————————
+// Types & utilitaires
+// ————————————————————————
+type ContactPayload = {
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  website?: string; // honeypot
+};
+
+// Appel API → Vite proxy en dev, /api en prod (même domaine)
+async function submitContact(values: ContactPayload) {
+  const res = await fetch("/api/contact.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(values),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) {
+    throw new Error(json?.error || "Erreur réseau");
+  }
+  return true;
+}
+
 // ————————————————————————
 // Petits composants réutilisables
 // ————————————————————————
-export function ContactInfo(){
+export function ContactInfo() {
   return (
     <section className="Contact-section" aria-labelledby="coord-title">
       <div className="container">
@@ -13,26 +39,37 @@ export function ContactInfo(){
           <article className="Contact-card" aria-label="Adresse & société">
             <h3 className="Contact-h3">Compagnie des Eaux d’Ardèche</h3>
             <p className="Contact-mono">Les Sources du Pestrin</p>
-            <p>2742 route de la Fontaulière<br/>07380 Meyras, Ardèche — France</p>
+            <p>
+              2742 route de la Fontaulière
+              <br />
+              07380 Meyras, Ardèche — France
+            </p>
           </article>
 
           <article className="Contact-card" aria-label="Téléphone & email">
             <h3 className="Contact-h3">Nous contacter</h3>
-            <p>Tél. : <a href="tel:+33475871053">04 75 87 10 53</a></p>
-            <p>Email : <a href="mailto:contact@sourcesdupestrin.fr">contact@sourcesdupestrin.fr</a></p>
+            <p>
+              Tél. : <a href="tel:+33475871053">04 75 87 10 53</a>
+            </p>
+            <p>
+              Email :{" "}
+              <a href="mailto:contact@sourcesdupestrin.fr">
+                contact@sourcesdupestrin.fr
+              </a>
+            </p>
           </article>
 
           <article className="Contact-card" aria-label="Horaires">
             <h3 className="Contact-h3">Horaires d’accueil</h3>
-            <HoursTable/>
+            <HoursTable />
           </article>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export function HoursTable(){
+export function HoursTable() {
   return (
     <table className="HoursTable" aria-label="Horaires d’ouverture">
       <tbody>
@@ -43,10 +80,10 @@ export function HoursTable(){
         <tr><th>Ven</th><td>09:00–12:00</td><td>14:00–16:00</td></tr>
       </tbody>
     </table>
-  )
+  );
 }
 
-export function MapEmbed(){
+export function MapEmbed() {
   const lat = 44.6821278;
   const lng = 4.2818839;
   const driving = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
@@ -79,30 +116,72 @@ export function MapEmbed(){
   );
 }
 
+// ————————————————————————
+// Formulaire connecté à l’API PHP
+// ————————————————————————
+export function ContactForm() {
+  const [status, setStatus] = React.useState<"idle" | "sending" | "ok" | "error">("idle");
+  const [error, setError] = React.useState<string>();
+  const successRef = React.useRef<HTMLParagraphElement>(null);
 
-export function ContactForm(){
-  const [info, setInfo] = React.useState<string>('')
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>){
-    e.preventDefault()
-    setInfo('Le formulaire sera activé très bientôt (envoi par SMTP). En attendant, utilisez le mailto ci-dessus).')
+    // 🔧 Conserver une référence stable (évite e.currentTarget === null après await)
+    const formEl = e.currentTarget as HTMLFormElement;
+
+    setStatus("sending");
+    setError(undefined);
+
+    const f = new FormData(formEl);
+    const name = String(f.get("name") || "");
+    const email = String(f.get("email") || "");
+    const phone = String(f.get("phone") || "");
+    const subject = String(f.get("subject") || "");
+    const message = String(f.get("message") || "");
+    const website = String(f.get("website") || ""); // honeypot (doit rester vide)
+
+    const messageToSend = subject ? `Sujet: ${subject}\n\n${message}` : message;
+
+    try {
+      await submitContact({ name, email, phone, message: messageToSend, website });
+      formEl.reset();          // ✅ reset après succès
+      setStatus("ok");
+      // Focus sur le message de succès (accessibilité)
+      requestAnimationFrame(() => successRef.current?.focus());
+    } catch (err: any) {
+      setStatus("error");
+      setError(err?.message || "Échec de l’envoi");
+    }
   }
 
   return (
     <section className="Contact-section" aria-labelledby="form-title">
       <div className="container">
         <h2 id="form-title" className="Contact-h2">Écrivez-nous</h2>
+
         <form className="Contact-form" onSubmit={onSubmit} noValidate>
           {/* Champ anti-bots (honeypot) */}
-          <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hp" aria-hidden="true" />
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hp"
+            aria-hidden="true"
+          />
 
           <div className="FormRow">
             <div className="Field">
-              <label htmlFor="name">Nom <span aria-hidden>*</span></label>
+              <label htmlFor="name">
+                Nom <span aria-hidden>*</span>
+              </label>
               <input id="name" name="name" required autoComplete="name" />
             </div>
             <div className="Field">
-              <label htmlFor="email">Email <span aria-hidden>*</span></label>
+              <label htmlFor="email">
+                Email <span aria-hidden>*</span>
+              </label>
               <input id="email" name="email" type="email" required autoComplete="email" />
             </div>
           </div>
@@ -110,7 +189,13 @@ export function ContactForm(){
           <div className="FormRow">
             <div className="Field">
               <label htmlFor="phone">Téléphone</label>
-              <input id="phone" name="phone" type="tel" autoComplete="tel" pattern="^[0-9+().\\-\\s]{6,}$" />
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                pattern="^[0-9+().\-\\s]{6,}$"
+              />
             </div>
             <div className="Field">
               <label htmlFor="subject">Sujet</label>
@@ -119,52 +204,105 @@ export function ContactForm(){
           </div>
 
           <div className="Field">
-            <label htmlFor="message">Votre message <span aria-hidden>*</span></label>
-            <textarea id="message" name="message" required rows={6} />
+            <label htmlFor="message">
+              Votre message <span aria-hidden>*</span>
+            </label>
+            <textarea id="message" name="message" required rows={6} minLength={10} />
           </div>
 
           <div className="FormActions">
-            <button className="Btn Btn--primary" title="Bientôt actif">Envoyer</button>
-            {info && <p className="FormMsg FormMsg--info">{info}</p>}
+            <button className="Btn Btn--primary" type="submit" disabled={status === "sending"}>
+              {status === "sending" ? "Envoi…" : "Envoyer"}
+            </button>
+
+            {status === "ok" && (
+              <p
+                className="FormMsg FormMsg--success"
+                role="status"
+                tabIndex={-1}
+                ref={successRef}
+              >
+                Merci, votre message a bien été envoyé.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="FormMsg FormMsg--error" role="alert">
+                Erreur : {error}
+              </p>
+            )}
           </div>
         </form>
       </div>
     </section>
-  )
+  );
 }
 
-export default function Contact(){
+export default function Contact() {
   return (
     <main className="Contact">
       <header className="Contact-hero">
         <div className="container">
           <p className="Contact-kicker">Contact</p>
           <h1>Nous rencontrer & nous écrire</h1>
-          <p className="Contact-intro">Pour toute question (professionnels, particuliers, presse), contactez-nous via le formulaire ou par téléphone. Nous sommes basés à Meyras, au cœur des Monts d’Ardèche.</p>
+          <p className="Contact-intro">
+            Pour toute question (professionnels, particuliers, presse), contactez-nous via le
+            formulaire ou par téléphone. Nous sommes basés à Meyras, au cœur des Monts d’Ardèche.
+          </p>
         </div>
       </header>
 
-      <ContactInfo/>
-      <ContactForm/>
-      <MapEmbed/>
+      <ContactInfo />
+      <ContactForm />
+      <MapEmbed />
 
       {/* JSON-LD — résultats enrichis */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-        '@context':'https://schema.org',
-        '@type':'Organization',
-        name:'Les Sources du Pestrin',
-        legalName:'Compagnie des Eaux d\'Ardèche',
-        url:'https://www.sourcesdupestrin.fr',
-        logo:'https://www.sourcesdupestrin.fr/assets/logo-pestrin.svg',
-        brand:{ '@type':'Brand', name:'Ventadour' },
-        address:{ '@type':'PostalAddress', streetAddress:'2742 route de la Fontaulière', postalCode:'07380', addressLocality:'Meyras', addressCountry:'FR' },
-        contactPoint:[{ '@type':'ContactPoint', contactType:'customer service', telephone:'+33-4-75-87-10-53', email:'contact@sourcesdupestrin.fr', availableLanguage:['fr','en'] }],
-        hasMap:`https://www.google.com/maps?q=${encodeURIComponent('2742 Route de la Fontaulière, 07380 Meyras, France')}`,
-        openingHoursSpecification:[
-          { '@type':'OpeningHoursSpecification', dayOfWeek:['Monday','Tuesday','Wednesday','Thursday'], opens:'09:00', closes:'17:00' },
-          { '@type':'OpeningHoursSpecification', dayOfWeek:'Friday', opens:'09:00', closes:'16:00' }
-        ]
-      })}} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Les Sources du Pestrin",
+            legalName: "Compagnie des Eaux d'Ardèche",
+            url: "https://www.sourcesdupestrin.fr",
+            logo: "https://www.sourcesdupestrin.fr/assets/logo-pestrin.svg",
+            brand: { "@type": "Brand", name: "Ventadour" },
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "2742 route de la Fontaulière",
+              postalCode: "07380",
+              addressLocality: "Meyras",
+              addressCountry: "FR",
+            },
+            contactPoint: [
+              {
+                "@type": "ContactPoint",
+                contactType: "customer service",
+                telephone: "+33-4-75-87-10-53",
+                email: "contact@sourcesdupestrin.fr",
+                availableLanguage: ["fr", "en"],
+              },
+            ],
+            hasMap: `https://www.google.com/maps?q=${encodeURIComponent(
+              "2742 Route de la Fontaulière, 07380 Meyras, France"
+            )}`,
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+                opens: "09:00",
+                closes: "17:00",
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: "Friday",
+                opens: "09:00",
+                closes: "16:00",
+              },
+            ],
+          }),
+        }}
+      />
     </main>
-  )
+  );
 }
